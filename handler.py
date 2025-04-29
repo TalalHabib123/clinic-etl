@@ -36,7 +36,7 @@ def lambda_handler(event: Dict[str, Any], context) -> Dict[str, Any]:
 
     for record in event.get("Records", []):
         key: str = record["s3"]["object"]["key"]
-        if not key.startswith("incoming/fibr/"):
+        if not key.startswith("incoming/fhir/"):
             logger.info("Skipping %s (prefix mismatch)", key)
             continue
 
