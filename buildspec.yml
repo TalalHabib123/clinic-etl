@@ -8,9 +8,6 @@ phases:
     commands: zip -q -r lambda.zip .
   post_build:
     commands:
-      # publish the new code to Lambda
-      - aws lambda update-function-code \
-          --function-name IngestFHIRLambda \
-          --zip-file fileb://lambda.zip
+      - aws lambda update-function-code --function-name IngestFHIRLambda --zip-file fileb://lambda.zip
 artifacts:
   files: []            # no artifact needed by later stages
