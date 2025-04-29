@@ -1,14 +1,16 @@
 version: 0.2
-
 phases:
   install:
-    runtime-versions:
-      python: 3.12
+    runtime-versions: { python: 3.12 }
     commands:
       - pip install -r requirements.txt -t .
   build:
+    commands: zip -q -r lambda.zip .
+  post_build:
     commands:
-      - zip -q -r lambda.zip .
+      # publish the new code to Lambda
+      - aws lambda update-function-code \
+          --function-name IngestFHIRLambda \
+          --zip-file fileb://lambda.zip
 artifacts:
-  files:
-    - lambda.zip
+  files: []            # no artifact needed by later stages
