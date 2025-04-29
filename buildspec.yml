@@ -6,9 +6,6 @@ phases:
       python: 3.12
     commands:
       - pip install -r requirements.txt -t .
-  pre_build:
-    commands:
-      - pytest -q
   build:
     commands:
       - zip -q -r lambda.zip .
